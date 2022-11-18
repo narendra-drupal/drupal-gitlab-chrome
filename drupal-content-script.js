@@ -36,13 +36,26 @@
       if (userIssue.count) {
 
         const clicker = document.createElement('a');
-        clicker.setAttribute('href', '#')
+        //clicker.setAttribute('href', '#')
         clicker.setAttribute('user', name);
-        clicker.onclick = function () {
+        clicker.onclick = function (event) {
+          const target = event.target;
+          const targetIsFiltered = target.hasAttribute('filtered');
+          document.querySelectorAll('.user-filter').forEach(link => {
+            link.innerText = "🔎";
+            link.removeAttribute('filtered');
+          });
+          if (targetIsFiltered) {
+            assignedFields.forEach(assignedField => assignedField.closest('tr').style.display = 'table-row');
+            return;
+          }
+
+          target.innerText = "✅";
+          target.setAttribute('filtered', true);
           assignedFields.forEach(assignedField => {
             const parentRow = assignedField.closest('tr');
             if (assignedField.innerText.includes(name)) {
-              parentRow.style.display = 'block';
+              parentRow.style.display = 'table-row';
             }
             else {
               parentRow.style.display = 'none';
@@ -50,6 +63,7 @@
           });
         }
         clicker.innerText = "🔎";
+        clicker.className = 'user-filter';
         userDiv.appendChild(clicker);
       }
 

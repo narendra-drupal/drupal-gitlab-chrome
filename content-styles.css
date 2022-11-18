@@ -4,6 +4,9 @@ div.usersCount div {
   border-style: groove;
   padding-right: 10px;
 }
+div.usersCount div a.user-filter {
+  cursor: pointer;
+}
 div.usersCount div.user-issue-cnt-0 {
   background-color: red;
 }
@@ -22,4 +25,8 @@ div.jira-issue a {
 }
 #drupal-org-trigger.drupal-trigger-waiting {
 
+}
+.usersCount {
+  border: 3px blue solid;
+  overflow: auto;
 }
