@@ -3,7 +3,11 @@
   "description": "Helper functionality",
   "version": "1.0",
   "manifest_version": 3,
-  "host_permissions": ["https://www.drupal.org/api-d7/*"],
+  "host_permissions": ["https://www.drupal.org/*"],
+  "background": {
+    "type": "module",
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "type": "module",
