@@ -9,7 +9,7 @@
       "type": "module",
       "matches": ["https://www.drupal.org/*"],
       "css": ["content-styles.css"],
-      "js": ["drupal-content-script.js"]
+      "js": ["drupal-content-script.js", "dynamic-filter-script.js"]
     }
   ],
   "web_accessible_resources": [
