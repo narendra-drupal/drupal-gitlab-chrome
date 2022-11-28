@@ -11,9 +11,9 @@
   "content_scripts": [
     {
       "type": "module",
-      "matches": ["https://www.drupal.org/*"],
+      "matches": ["https://www.drupal.org/project/issues/search/*"],
       "css": ["content-styles.css"],
-      "js": ["drupal-content-script.js"]
+      "js": ["drupal-content-queue.js"]
     }
   ],
   "web_accessible_resources": [
