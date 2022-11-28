@@ -1,4 +1,8 @@
-
+/**
+ * Creates a search input for dynamic title searching.
+ *
+ * @type {{createElement: (function(): HTMLElement)}}
+ */
 const titleFilter = {
   createElement: function () {
     const searchInput = document.createElement("INPUT");
