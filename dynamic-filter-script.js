@@ -1,42 +1,45 @@
 (async () => {
-  const issueTable = document.querySelector("table.project-issue");
-  const x = document.createElement("INPUT");
-  x.setAttribute("type", "text");
-  x.setAttribute("placeholder", "Search issues...");
-  x.setAttribute("id", "extension-filter");
-  x.setAttribute("size", 250);
-  x.setAttribute("maxlength", 250);
-  issueTable.parentNode.insertBefore(x, issueTable);
+  var url = document.URL;
+  const regex = /https:\/\/www\.drupal\.org\/project\/issues\/.*/g;
+  if (url.match(regex)) {
+    const issueTable = document.querySelector("table.project-issue");
+    const input = document.createElement("INPUT");
+    Object.assign(input, {
+      type: "text",
+      placeholder: "Search issues...",
+      id: "extension-filter",
+      size: 250,
+      maxlength: 250,
+    });
 
+    issueTable.parentNode.insertBefore(input, issueTable);
 
-  // get search bar element
-  const searchInput = document.getElementById("extension-filter");
+    // get search bar element
+    const searchInput = document.getElementById("extension-filter");
 
-  // store name elements in array-like object
-  const namesFromDOM = document.querySelectorAll("tbody .views-field-title a");
-  console.log(namesFromDOM);
-  // listen for user events
-  searchInput.addEventListener("keyup", (event) => {
-    const { value } = event.target;
+    // store name elements in array-like object
+    const namesFromDOM = document.querySelectorAll("tbody .views-field-title a");
 
-    // get user search input converted to lowercase
-    const searchQuery = value.toLowerCase();
+    // listen for user events
+    searchInput.addEventListener("keyup", (event) => {
+      const { value } = event.target;
 
+      // get user search input converted to lowercase
+      const searchQuery = value.toLowerCase();
 
-    // for (const nameElement of namesFromDOM) {
-    //   // store name text and convert to lowercase
-    //   let name = nameElement.textContent.toLowerCase();
-    //
-    //   // compare current name to search input
-    //   if (name.includes(searchQuery)) {
-    //     // found name matching search, display it
-    //     nameElement.style.display = "block";
-    //   } else {
-    //     // no match, don't display name
-    //     nameElement.style.display = "none";
-    //   }
-    // }
-  });
-
+      for (const nameElement of namesFromDOM) {
+        // store name text and convert to lowercase
+        let name = nameElement.textContent.toLowerCase();
+        // compare current name to search input
+        if (name.includes(searchQuery)) {
+          // found name matching search, display it
+          nameElement.parentNode.parentNode.style.display = "table-row";
+        } else {
+          // no match, don't display name
+          nameElement.parentNode.parentNode.style.display = "none";
+        }
+      }
+    });
+  }
 
 })();
