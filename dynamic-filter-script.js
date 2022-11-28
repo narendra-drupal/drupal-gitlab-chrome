@@ -1,21 +1,14 @@
-(async () => {
-  var url = document.URL;
-  const regex = /https:\/\/www\.drupal\.org\/project\/issues\/.*/g;
-  if (url.match(regex)) {
-    const issueTable = document.querySelector("table.project-issue");
-    const input = document.createElement("INPUT");
-    Object.assign(input, {
+
+const titleFilter = {
+  createElement: function () {
+    const searchInput = document.createElement("INPUT");
+    Object.assign(searchInput, {
       type: "text",
       placeholder: "Search issues...",
       id: "extension-filter",
       size: 250,
       maxlength: 250,
     });
-
-    issueTable.parentNode.insertBefore(input, issueTable);
-
-    // get search bar element
-    const searchInput = document.getElementById("extension-filter");
 
     // store name elements in array-like object
     const namesFromDOM = document.querySelectorAll("tbody .views-field-title a");
@@ -40,6 +33,7 @@
         }
       }
     });
+    return searchInput;
   }
-
-})();
+};
+export { titleFilter };
