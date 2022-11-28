@@ -4,6 +4,7 @@
 
   var url = document.URL;
   const regex = /https:\/\/www\.drupal\.org\/project\/issues\/search\/.*/g;
+  // For test commit only.
   if (url.match(regex)) {
     // On issue queue search page
     const assignedInput = document.getElementById("edit-assigned");
