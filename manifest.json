@@ -3,18 +3,22 @@
   "description": "Helper functionality",
   "version": "1.0",
   "manifest_version": 3,
-  "host_permissions": ["https://www.drupal.org/api-d7/*"],
+  "host_permissions": ["https://www.drupal.org/*"],
+  "background": {
+    "type": "module",
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "type": "module",
-      "matches": ["https://www.drupal.org/*"],
+      "matches": ["https://www.drupal.org/project/issues/search/*"],
       "css": ["content-styles.css"],
-      "js": ["drupal-content-script.js", "dynamic-filter-script.js"]
+      "js": ["drupal-content-queue.js"]
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["common.js"],
+      "resources": ["common.js", "drupal-user-count.js", "dynamic-filter-script.js"],
       "matches": ["https://www.drupal.org/*"]
     }
   ],
