@@ -1,23 +1,35 @@
+/**
+ * Loads issues from the pagination results.
+ *
+ * @todo Limit to only queries with 3 pages
+ * @todo considering triggering from a link
+ *
+ * @type {{addPages: multiPage.addPages}}
+ */
 const multiPage = {
     addPages: function () {
-        const pageLinks = document.querySelectorAll('.view-project-issue-search-project-searchapi .pager .pager-item a');
-        const urls = [];
-        const table = document.querySelector('.view-project-issue-search-project-searchapi tbody');
+        const viewEl = document.querySelector('.view-project-issue-search-project-searchapi');
+        const pageLinks = viewEl.querySelectorAll('.pager .pager-item a');
+        const table = viewEl.querySelector( 'tbody');
+        const parser = new DOMParser();
+
         pageLinks.forEach(link => {
-            urls.push('https://www.drupal.org/' + link.getAttribute('href'));
-        });
-        chrome.runtime.sendMessage(
-            { call: "fetchIssueRows", urls:  urls},
-            function (response) {
+            const url = 'https://www.drupal.org/' + link.getAttribute('href');
+            function reqListener() {
+                const responseDom = parser.parseFromString(this.responseText, "text/html");
+                const rows = responseDom.querySelectorAll(".view-project-issue-search-project-searchapi tbody tr");
+                rows.forEach(row => {
+                    table.append(row);
+                });
 
-                    const parser = new DOMParser();
-                    const pageParser = parser.parseFromString(response.page,  "text/html");
-                    pageParser.querySelectorAll('.view-project-issue-search-project-searchapi tbody tr').forEach(row => {
-                        table.append(row);
-                    });
-
+                console.log(this.responseText);
             }
-        );
+            const req = new XMLHttpRequest();
+            req.addEventListener("load", reqListener);
+            req.open("GET", url);
+            req.send();
+        });
+
     }
 }
 
