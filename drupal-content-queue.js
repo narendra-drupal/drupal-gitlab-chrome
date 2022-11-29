@@ -9,7 +9,4 @@
 
   multiPage.addPages();
   listingToolbar.create();
-})()
-
-
-
+})();
