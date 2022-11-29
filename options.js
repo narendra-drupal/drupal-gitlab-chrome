@@ -5,6 +5,8 @@ function save_options() {
     chrome.storage.sync.set({
         projects: projects,
     }, function() {
+        // Reset from storage to remove empty lines, if any.
+        restore_options()
         // Update status to let user know options were saved.
         const status = document.getElementById('status');
         status.textContent = "Options saved";
@@ -13,8 +15,7 @@ function save_options() {
         }, 1500);
     });
 }
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
+// Restores form values from the preferences stored in chrome.storage.
 function restore_options() {
     chrome.storage.sync.get({
         projects: [],
