@@ -8,6 +8,8 @@
   const { userCount } = await import(src);
   src = chrome.runtime.getURL("dynamic-filter-script.js");
   const { titleFilter } = await import(src);
+  src = chrome.runtime.getURL("merge-request-status.js");
+  const { mergeRequestStatus } = await import(src);
 
   const customToolbar = document.createElement('div');
   customToolbar.id = "custom-toolbar";
@@ -15,5 +17,6 @@
   // Add the individual elements to the toolbar.
   customToolbar.appendChild(userCount.createElement());
   customToolbar.appendChild(titleFilter.createElement());
+  customToolbar.appendChild(mergeRequestStatus.createElement());
   issueTable.parentNode.insertBefore(customToolbar, issueTable);
 })();
