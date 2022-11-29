@@ -17,6 +17,9 @@ const drupalConfig = {
   },
 };
 const utils = {
+  getIssueListViewElement: function () {
+    return document.querySelector('.view-project-issue-search-project-searchapi');
+  },
   getIssueIdFromUrl: function (url) {
     let parts = url.split("/");
     let lastPart = parts[parts.length - 1];

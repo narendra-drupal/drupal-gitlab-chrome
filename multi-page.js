@@ -1,3 +1,8 @@
+let src = chrome.runtime.getURL("common.js");
+const { utils } = await import(src);
+src = chrome.runtime.getURL("toolbar.js");
+const { listingToolbar } = await import(src);
+
 /**
  * Loads issues from the pagination results.
  *
@@ -8,7 +13,7 @@
  */
 const multiPage = {
     addPages: function () {
-        const viewEl = document.querySelector('.view-project-issue-search-project-searchapi');
+        const viewEl = utils.getIssueListViewElement();
         const pageLinks = viewEl.querySelectorAll('.pager .pager-item a');
         if (pageLinks.length > 3) {
             // @todo just add message on page.
@@ -26,12 +31,11 @@ const multiPage = {
                 rows.forEach(row => {
                     table.append(row);
                 });
-
-                console.log(this.responseText);
+                listingToolbar.create();
             }
             const req = new XMLHttpRequest();
             req.addEventListener("load", reqListener);
-            req.open("GET", url);
+            req.open("GET", url, );
             req.send();
         });
 
