@@ -7,6 +7,19 @@
   src = chrome.runtime.getURL("toolbar.js");
   const { listingToolbar } = await import(src);
 
-  multiPage.addPages();
-  listingToolbar.create();
+  chrome.storage.sync.get(
+    {
+      projects: [],
+    },
+    function (items) {
+      items.projects.every((project) => {
+        if (document.URL.includes(`issues/search/${project}`)) {
+          multiPage.addPages();
+          listingToolbar.create();
+          return false;
+        }
+        return true;
+      });
+    }
+  );
 })();
