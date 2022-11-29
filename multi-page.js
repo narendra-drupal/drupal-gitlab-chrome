@@ -10,6 +10,11 @@ const multiPage = {
     addPages: function () {
         const viewEl = document.querySelector('.view-project-issue-search-project-searchapi');
         const pageLinks = viewEl.querySelectorAll('.pager .pager-item a');
+        if (pageLinks.length > 3) {
+            // @todo just add message on page.
+            alert(`Not loading pages because too many ${pageLinks.length}`);
+            return;
+        }
         const table = viewEl.querySelector( 'tbody');
         const parser = new DOMParser();
 
