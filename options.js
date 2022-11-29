@@ -19,7 +19,7 @@ function restore_options() {
     chrome.storage.sync.get({
         projects: [],
     }, function(items) {
-        document.getElementById('projects').value = items.projects;
+        document.getElementById('projects').value = items.projects.join("\n");
     });
 }
 document.addEventListener('DOMContentLoaded', restore_options);
