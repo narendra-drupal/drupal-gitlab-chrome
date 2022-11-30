@@ -20,17 +20,30 @@ const mergeRequestStatus = {
       )
         .then((response) => response.json())
         .then((data) => {
-          const tdElement = document.createElement("TD");
+          const tdElement = document.createElement("td");
           if (Object.keys(data).length === 0) {
             tdElement.appendChild(document.createTextNode("No"));
           } else {
-            tdElement.appendChild(document.createTextNode("Yes"));
+            for (const key in data) {
+              const anchorLink = document.createElement("a");
+              const link = document.createTextNode(
+                "#" + data[key].iid + " " + data[key].merge_status
+              );
+              anchorLink.appendChild(link);
+              Object.assign(anchorLink, {
+                title: "Merge request #" + data[key].iid,
+                href: data[key].web_url,
+                target: "_blank",
+              });
+              tdElement.appendChild(anchorLink);
+              tdElement.appendChild(document.createElement("br"));
+            }
           }
           nameElement.parentNode.parentNode.appendChild(tdElement);
         });
     }
     const thElement = document.createElement("TH");
-    thElement.appendChild(document.createTextNode("Merge request?"));
+    thElement.appendChild(document.createTextNode("Merge request available?"));
 
     return thElement;
   },
