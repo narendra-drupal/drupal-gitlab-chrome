@@ -24,7 +24,9 @@ const listingToolbar = {
     issueTable.parentNode.insertBefore(customToolbar, issueTable);
 
     // Add header for merge request.
-    issueTable.querySelector("thead tr").appendChild(mergeRequestStatus.createElement());
+    issueTable
+      .querySelector("thead tr")
+      .appendChild(mergeRequestStatus.createElement());
   },
 
   removeExisting: function () {
