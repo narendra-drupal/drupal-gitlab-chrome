@@ -18,24 +18,27 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["common.js", "drupal-user-count.js", "dynamic-filter-script.js", "merge-request-status.js"],
+      "resources": ["common.js", "drupal-user-count.js", "dynamic-filter-script.js", "merge-request-status.js", "multi-page.js", "toolbar.js"],
       "matches": ["https://www.drupal.org/*"]
     }
   ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {
-    "default_popup": "popup.html",
     "default_icon": {
-      "16": "/images/get_started16.png",
-      "32": "/images/get_started32.png",
-      "48": "/images/get_started48.png",
-      "128": "/images/get_started128.png"
+      "16": "/images/druplicon-small.png",
+      "32": "/images/druplicon-small.png",
+      "48": "/images/druplicon-small.png",
+      "128": "/images/druplicon-small.png"
     }
   },
   "icons": {
-    "16": "/images/get_started16.png",
-    "32": "/images/get_started32.png",
-    "48": "/images/get_started48.png",
-    "128": "/images/get_started128.png"
+    "16": "/images/druplicon-small.png",
+    "32": "/images/druplicon-small.png",
+    "48": "/images/druplicon-small.png",
+    "128": "/images/druplicon-small.png"
   }
 }
