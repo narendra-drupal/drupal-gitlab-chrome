@@ -22,6 +22,9 @@ const multiPage = {
         }
         const table = viewEl.querySelector( 'tbody');
         const parser = new DOMParser();
+        const beforePages = viewEl.querySelector('div.attachment-before');
+        beforePages.textContent = 'Loading pages....';
+        viewEl.querySelector('.pager').remove();
 
         pageLinks.forEach(link => {
             const url = 'https://www.drupal.org/' + link.getAttribute('href');
@@ -31,6 +34,7 @@ const multiPage = {
                 rows.forEach(row => {
                     table.append(row);
                 });
+                beforePages.textContent = `Showing all ${document.querySelectorAll('.view-project-issue-search-project-searchapi tbody tr').length} items`;
                 listingToolbar.create();
             }
             const req = new XMLHttpRequest();

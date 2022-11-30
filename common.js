@@ -17,8 +17,15 @@ const drupalConfig = {
   },
 };
 const utils = {
+  settingDefaults: {
+    projects: [],
+    load_pages: false,
+  },
+
   getIssueListViewElement: function () {
-    return document.querySelector('.view-project-issue-search-project-searchapi');
+    return document.querySelector(
+      ".view-project-issue-search-project-searchapi"
+    );
   },
   getIssueIdFromUrl: function (url) {
     let parts = url.split("/");

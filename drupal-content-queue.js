@@ -10,11 +10,15 @@
   chrome.storage.sync.get(
     {
       projects: [],
+      load_pages: false,
     },
     function (items) {
+      console.log(items)
       items.projects.every((project) => {
         if (document.URL.includes(`issues/search/${project}`)) {
-          multiPage.addPages();
+          if (items.load_pages) {
+            multiPage.addPages();
+          }
           listingToolbar.create();
           return false;
         }
