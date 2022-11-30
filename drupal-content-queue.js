@@ -8,10 +8,7 @@
   const { listingToolbar } = await import(src);
 
   chrome.storage.sync.get(
-    {
-      projects: [],
-      load_pages: false,
-    },
+    utils.settingDefaults,
     function (items) {
       console.log(items)
       items.projects.every((project) => {

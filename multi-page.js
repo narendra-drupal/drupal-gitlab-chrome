@@ -15,14 +15,14 @@ const multiPage = {
     addPages: function () {
         const viewEl = utils.getIssueListViewElement();
         const pageLinks = viewEl.querySelectorAll('.pager .pager-item a');
+        const beforePages = viewEl.querySelector('div.attachment-before');
         if (pageLinks.length > 3) {
-            // @todo just add message on page.
-            alert(`Not loading pages because too many ${pageLinks.length}`);
+            beforePages.textContent += '(auto-loading page not allowed because too many pages)';
             return;
         }
         const table = viewEl.querySelector( 'tbody');
         const parser = new DOMParser();
-        const beforePages = viewEl.querySelector('div.attachment-before');
+
         beforePages.textContent = 'Loading pages....';
         viewEl.querySelector('.pager').remove();
 
