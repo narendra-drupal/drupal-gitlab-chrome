@@ -21,8 +21,10 @@ const listingToolbar = {
     // Add the individual elements to the toolbar.
     customToolbar.appendChild(userCount.createElement());
     customToolbar.appendChild(titleFilter.createElement());
-    customToolbar.appendChild(mergeRequestStatus.createElement());
     issueTable.parentNode.insertBefore(customToolbar, issueTable);
+
+    // Add header for merge request.
+    issueTable.querySelector("thead tr").appendChild(mergeRequestStatus.createElement());
   },
 
   removeExisting: function () {

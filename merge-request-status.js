@@ -15,16 +15,20 @@ const mergeRequestStatus = {
       const address = fetch(`https://git.drupalcode.org/api/v4/merge_requests?state=opened&scope=all&in=title&search=` + issueId)
           .then((response) => response.json())
           .then((data) => {
-            if (data.length >= 0) {
-              console.log(data)
+              const tdElement = document.createElement("TD");
+            if (Object. keys(data). length === 0) {
+                tdElement.appendChild(document.createTextNode('No'));
             }
             else {
-
+                tdElement.appendChild(document.createTextNode('Yes'));
             }
+              nameElement.parentNode.parentNode.appendChild(tdElement);
           });
-
-
     }
+      const thElement = document.createElement("TH");
+      thElement.appendChild(document.createTextNode('Merge request?'));
+
+    return thElement;
   }
 };
 
