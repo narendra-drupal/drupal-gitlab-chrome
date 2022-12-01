@@ -27,7 +27,7 @@ const mergeRequestStatus = {
             for (const key in data) {
               const anchorLink = document.createElement("a");
               const link = document.createTextNode(
-                "#" + data[key].iid + " " + data[key].merge_status + " Total comment count " + data[key].user_notes_count
+               "#" + data[key].iid + " " + data[key].merge_status + `, ${data[key].user_notes_count} comments`
               );
               anchorLink.appendChild(link);
               Object.assign(anchorLink, {
