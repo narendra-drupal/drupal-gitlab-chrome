@@ -7,6 +7,11 @@
   src = chrome.runtime.getURL("toolbar.js");
   const { listingToolbar } = await import(src);
 
+  src = chrome.runtime.getURL("merge-request-status.js");
+  const { mergeRequestStatus } = await import(src);
+
+  mergeRequestStatus.addColumn();
+
   chrome.storage.sync.get(
     utils.settingDefaults,
     function (items) {

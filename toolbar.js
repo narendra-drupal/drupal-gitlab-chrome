@@ -2,8 +2,6 @@ let src = chrome.runtime.getURL("drupal-user-count.js");
 const { userCount } = await import(src);
 src = chrome.runtime.getURL("dynamic-filter-script.js");
 const { titleFilter } = await import(src);
-src = chrome.runtime.getURL("merge-request-status.js");
-const { mergeRequestStatus } = await import(src);
 src = chrome.runtime.getURL("drupal-status-count.js");
 const { statusCount } = await import(src);
 
@@ -25,11 +23,6 @@ const listingToolbar = {
     customToolbar.appendChild(statusCount.createElement());
     customToolbar.appendChild(titleFilter.createElement());
     issueTable.parentNode.insertBefore(customToolbar, issueTable);
-
-    // Add header for merge request.
-    issueTable
-      .querySelector("thead tr")
-      .appendChild(mergeRequestStatus.createElement());
   },
 
   removeExisting: function () {

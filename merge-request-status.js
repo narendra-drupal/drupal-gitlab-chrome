@@ -1,12 +1,12 @@
 /**
  * Creates a new column for merge request status.
  *
- * @type {{createElement: (function(): HTMLElement)}}
+ * @type {{addColumn: (function(): HTMLElement)}}
  */
 import { utils } from "./common.js";
 
 const mergeRequestStatus = {
-  createElement: function () {
+  addColumn: function () {
     // store name elements in array-like object
     const namesFromDOM = document.querySelectorAll(
       "tbody .views-field-title a"
@@ -27,7 +27,11 @@ const mergeRequestStatus = {
             for (const key in data) {
               const anchorLink = document.createElement("a");
               const link = document.createTextNode(
-               "#" + data[key].iid + " " + data[key].merge_status + `, ${data[key].user_notes_count} comments`
+                "#" +
+                  data[key].iid +
+                  " " +
+                  data[key].merge_status +
+                  `, ${data[key].user_notes_count} comments`
               );
               anchorLink.appendChild(link);
               Object.assign(anchorLink, {
@@ -45,7 +49,10 @@ const mergeRequestStatus = {
     const thElement = document.createElement("TH");
     thElement.appendChild(document.createTextNode("Merge request available?"));
 
-    return thElement;
+    // Add header for merge request.
+    document
+      .querySelector("table.project-issue thead tr")
+      .appendChild(thElement);
   },
 };
 
