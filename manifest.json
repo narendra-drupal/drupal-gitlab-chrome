@@ -24,7 +24,10 @@
         "dynamic-filter-script.js",
         "merge-request-status.js",
         "multi-page.js",
-        "toolbar.js"
+        "toolbar.js",
+        "drupal-status-count.js",
+        "toolbarRowFilterer.js",
+        "rowFilterer.js"
       ],
       "matches": ["https://www.drupal.org/*"]
     }

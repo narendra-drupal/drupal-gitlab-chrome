@@ -1,10 +1,14 @@
+let src = chrome.runtime.getURL("rowFilterer.js");
+const { rowFilterer } = await import(src);
+
+
 /**
  * Creates a search input for dynamic title searching.
  *
  * @type {{createElement: (function(): HTMLElement)}}
  */
-const titleFilter = {
-  createElement: function () {
+class titleFilterer extends rowFilterer {
+  createElement() {
     const searchInput = document.createElement("INPUT");
     Object.assign(searchInput, {
       type: "text",
@@ -30,14 +34,15 @@ const titleFilter = {
         // compare current name to search input
         if (name.includes(searchQuery)) {
           // found name matching search, display it
-          nameElement.parentNode.parentNode.style.display = "table-row";
+          this.removeHideCondition(nameElement)
         } else {
           // no match, don't display name
-          nameElement.parentNode.parentNode.style.display = "none";
+          this.addHideCondition(nameElement);
         }
       }
     });
     return searchInput;
   }
-};
+}
+const titleFilter = new titleFilterer();
 export { titleFilter };
