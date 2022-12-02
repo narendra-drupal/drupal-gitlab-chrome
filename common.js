@@ -26,7 +26,6 @@ const utils = {
     return document.querySelector(
       ".view-project-issue-search-project-searchapi"
     );
-
   },
   getIssueIdFromUrl: function (url) {
     let parts = url.split("/");
