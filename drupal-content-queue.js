@@ -15,16 +15,10 @@
       if (document.URL.includes(`issues/search/${project}`)) {
         if (items.load_pages) {
           multiPage.addPages();
+          const isMultiplePage = document.getElementsByClassName('multi-page-all-loaded');
           const checkInterval = setInterval(function () {
             if (
-              document
-                .querySelector(".content .attachment-before")
-                .textContent.includes("Showing all") ||
-              document
-                .querySelector(".content .attachment-before")
-                .textContent.includes(
-                  "auto-loading page not allowed because too many pages"
-                )
+                isMultiplePage.length > 0
             ) {
               listingToolbar.create();
               window.clearInterval(checkInterval);
