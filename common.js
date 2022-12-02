@@ -23,9 +23,16 @@ const utils = {
   },
 
   getIssueListViewElement: function () {
-    return document.querySelector(
-      ".view-project-issue-search-project-searchapi"
-    );
+    if (window.location.pathname.includes('/project/issues/search/')) {
+      return document.querySelector(
+          ".view-project-issue-search-project-searchapi"
+      );
+    }else {
+      return document.querySelector(
+          ".view-project-issue-project-searchapi"
+      );
+    }
+
   },
   getIssueIdFromUrl: function (url) {
     let parts = url.split("/");
