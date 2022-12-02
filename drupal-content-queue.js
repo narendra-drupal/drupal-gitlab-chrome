@@ -13,14 +13,21 @@
   chrome.storage.sync.get(
     utils.settingDefaults,
     function (items) {
-      console.log(items)
       items.projects.every((project) => {
         if (document.URL.includes(`issues/search/${project}`)) {
           if (items.load_pages) {
             multiPage.addPages();
+            const checkInterval = setInterval(function() {
+              if (document.querySelector('.content .attachment-before').textContent.includes('Showing all')) {
+                window.clearInterval(checkInterval);
+                mergeRequestStatus.addColumn();
+              }
+            }, 500);
           }
-          mergeRequestStatus.addColumn();
-          listingToolbar.create();
+          else {
+            listingToolbar.create();
+            mergeRequestStatus.addColumn();
+          }
           return false;
         }
         return true;
