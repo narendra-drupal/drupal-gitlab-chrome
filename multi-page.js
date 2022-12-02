@@ -19,6 +19,8 @@ const multiPage = {
     if (pageLinks.length > 3) {
       beforePages.textContent +=
         "(auto-loading page not allowed because too many pages)";
+      // If we are not going to load more pages then signal that we are done.
+      viewEl.classList.add("multi-page-all-loaded");
       return;
     }
     if (pageLinks.length === 0) {
