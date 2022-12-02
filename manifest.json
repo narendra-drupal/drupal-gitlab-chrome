@@ -27,11 +27,13 @@
         "common.js",
         "drupal-user-count.js",
         "dynamic-filter-script.js",
+        "merge-request-status.js",
         "multi-page.js",
         "toolbar.js",
         "drupal-status-count.js",
         "toolbarRowFilterer.js",
-        "rowFilterer.js"
+        "rowFilterer.js",
+        "drupal-priority-count.js"
       ],
       "matches": ["https://www.drupal.org/*"]
     },
