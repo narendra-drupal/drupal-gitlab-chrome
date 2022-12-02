@@ -24,7 +24,7 @@ const utils = {
 
   getIssueListViewElement: function () {
     return document.querySelector(
-        ".view-project-issue-search-project-searchapi"
+      ".view-project-issue-search-project-searchapi"
     );
 
   },
