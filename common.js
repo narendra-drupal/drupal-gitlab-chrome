@@ -23,15 +23,9 @@ const utils = {
   },
 
   getIssueListViewElement: function () {
-    if (window.location.pathname.includes('/project/issues/search/')) {
-      return document.querySelector(
-          ".view-project-issue-search-project-searchapi"
-      );
-    }else {
-      return document.querySelector(
-          ".view-project-issue-project-searchapi"
-      );
-    }
+    return document.querySelector(
+        ".view-project-issue-search-project-searchapi"
+    );
 
   },
   getIssueIdFromUrl: function (url) {

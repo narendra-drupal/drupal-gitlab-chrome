@@ -11,7 +11,7 @@
   "content_scripts": [
     {
       "type": "module",
-      "matches": ["https://www.drupal.org/project/issues/search/*", "https://www.drupal.org/project/issues/*"],
+      "matches": ["https://www.drupal.org/project/issues/search/*"],
       "css": ["content-styles.css"],
       "js": ["drupal-content-queue.js"]
     }

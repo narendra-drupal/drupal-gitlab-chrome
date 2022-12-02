@@ -12,7 +12,7 @@
 
   chrome.storage.sync.get(utils.settingDefaults, function (items) {
     items.projects.every((project) => {
-      if (document.URL.includes(`issues/search/${project}`) || document.URL.includes(`issues/${project}`)) {
+      if (document.URL.includes(`issues/search/${project}`)) {
         if (items.load_pages) {
           multiPage.addPages();
           const checkInterval = setInterval(function () {
