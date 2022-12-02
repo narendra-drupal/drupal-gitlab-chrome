@@ -1,4 +1,7 @@
 (async () => {
+  let src = chrome.runtime.getURL("common.js");
+  const { utils } = await import(src);
+
   function waitForElm(selector) {
     return new Promise(resolve => {
       if (document.querySelector(selector)) {
@@ -22,7 +25,14 @@
   waitForElm('.js-discussion-container').then(() => {
     const allLinks = document.querySelectorAll('.note-text a');
     for (const anchorElement of allLinks) {
-      console.log(anchorElement);
+      const hrefAtt = anchorElement.getAttribute('href');
+      if (hrefAtt.includes("https://www.drupal.org/project/")) {
+        const issueId = utils.getIssueIdFromUrl(hrefAtt);
+        // Make request to Drupal to get status.
+        if (!isNaN(issueId)) {
+          console.log(hrefAtt, issueId);
+        }
+      }
     }
 
   });
