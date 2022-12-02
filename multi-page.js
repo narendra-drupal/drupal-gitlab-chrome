@@ -19,6 +19,8 @@ const multiPage = {
     if (pageLinks.length > 3) {
       beforePages.textContent +=
         "(auto-loading page not allowed because too many pages)";
+      // If we are not going to load more pages then signal that we are done.
+      viewEl.classList.add("multi-page-all-loaded");
       return;
     }
     if (pageLinks.length === 0) {
@@ -30,6 +32,7 @@ const multiPage = {
     beforePages.textContent = "Loading pages....";
     viewEl.querySelector(".pager").remove();
 
+    let pagesLoadedCnt = 0;
     pageLinks.forEach((link) => {
       const url = "https://www.drupal.org/" + link.getAttribute("href");
       function reqListener() {
@@ -48,6 +51,11 @@ const multiPage = {
             ".view-project-issue-search-project-searchapi tbody tr"
           ).length
         } items`;
+        pagesLoadedCnt++;
+        if (pagesLoadedCnt === pageLinks.length) {
+          // Add the pages have now been loaded.
+          viewEl.classList.add("multi-page-all-loaded");
+        }
         listingToolbar.create();
       }
       const req = new XMLHttpRequest();
