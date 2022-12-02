@@ -15,8 +15,8 @@
       if (document.URL.includes(`issues/search/${project}`)) {
         if (items.load_pages) {
           multiPage.addPages();
-          const isMultiplePage = document.getElementsByClassName('multi-page-all-loaded');
           const checkInterval = setInterval(function () {
+            const isMultiplePage = document.getElementsByClassName('multi-page-all-loaded');
             if (
                 isMultiplePage.length > 0
             ) {
