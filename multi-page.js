@@ -30,6 +30,7 @@ const multiPage = {
     beforePages.textContent = "Loading pages....";
     viewEl.querySelector(".pager").remove();
 
+    let pagesLoadedCnt = 0;
     pageLinks.forEach((link) => {
       const url = "https://www.drupal.org/" + link.getAttribute("href");
       function reqListener() {
@@ -48,6 +49,11 @@ const multiPage = {
             ".view-project-issue-search-project-searchapi tbody tr"
           ).length
         } items`;
+        pagesLoadedCnt++;
+        if (pagesLoadedCnt === pageLinks.length) {
+          // Add the pages have now been loaded.
+          viewEl.classList.add("multi-page-all-loaded");
+        }
         listingToolbar.create();
       }
       const req = new XMLHttpRequest();
