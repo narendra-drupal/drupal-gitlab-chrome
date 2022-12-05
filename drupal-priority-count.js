@@ -8,29 +8,33 @@ const { toolbarRowFilterer } = await import(src);
  */
 
 class priorityCountFilter extends toolbarRowFilterer {
-    createElement() {
-        // On issue queue search page
-        const prioritySelect = document.getElementById("edit-priorities");
-        // Attempt get all selected priorities.
-        let priorityLabels = Array.from(prioritySelect.options).map(option => {
-            if (option.selected) {
-                return option.innerText;
-            }
-            return false;
-        }).filter(selected => selected);
-        if (priorityLabels.length === 1) {
-            // If there is only on priority shown on the page add an empty element.
-            return document.createElement('div');
+  createElement() {
+    // On issue queue search page
+    const prioritySelect = document.getElementById("edit-priorities");
+    // Attempt get all selected priorities.
+    let priorityLabels = Array.from(prioritySelect.options)
+      .map((option) => {
+        if (option.selected) {
+          return option.innerText;
         }
-        if (priorityLabels.length === 0) {
-            // If no items have been selected show all priorities.
-            priorityLabels = Array.from(prioritySelect.options).map(option => option.innerText);
-        }
-        const priorityFields = document.querySelectorAll(
-            "td.views-field-field-issue-priority"
-        );
-        return this.setUpFilter(priorityFields, 'assigned', priorityLabels);
+        return false;
+      })
+      .filter((selected) => selected);
+    if (priorityLabels.length === 1) {
+      // If there is only on priority shown on the page add an empty element.
+      return document.createElement("div");
     }
+    if (priorityLabels.length === 0) {
+      // If no items have been selected show all priorities.
+      priorityLabels = Array.from(prioritySelect.options).map(
+        (option) => option.innerText
+      );
+    }
+    const priorityFields = document.querySelectorAll(
+      "td.views-field-field-issue-priority"
+    );
+    return this.setUpFilter(priorityFields, "assigned", priorityLabels);
+  }
 }
 const priorityCount = new priorityCountFilter();
 export { priorityCount };

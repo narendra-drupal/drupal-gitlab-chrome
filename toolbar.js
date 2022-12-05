@@ -7,7 +7,6 @@ const { statusCount } = await import(src);
 src = chrome.runtime.getURL("drupal-priority-count.js");
 const { priorityCount } = await import(src);
 
-
 /**
  * Provides a custom toolbar on the listing page.
  *

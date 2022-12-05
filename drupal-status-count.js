@@ -7,13 +7,12 @@ const { toolbarRowFilterer } = await import(src);
  * @type {{createElement: (function(): HTMLDivElement)}}
  */
 class statusCountFilter extends toolbarRowFilterer {
-    createElement() {
-        const statusFields = document.querySelectorAll(
-            "td.views-field.views-field-field-issue-status"
-        );
-        return this.setUpFilter(statusFields, 'status');
-
-    }
+  createElement() {
+    const statusFields = document.querySelectorAll(
+      "td.views-field.views-field-field-issue-status"
+    );
+    return this.setUpFilter(statusFields, "status");
+  }
 }
 const statusCount = new statusCountFilter();
 export { statusCount };

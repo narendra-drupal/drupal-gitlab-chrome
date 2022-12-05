@@ -1,5 +1,4 @@
-div.toolbar-filter div
-{
+div.toolbar-filter div {
   float: left;
   border: 1px;
   border-style: groove;
@@ -9,7 +8,7 @@ div.toolbar-filter div
 div.toolbar-filter div a.filter {
   cursor: pointer;
 }
-div.toolbar-filter.userCount div.user-issue-cnt-0{
+div.toolbar-filter.userCount div.user-issue-cnt-0 {
   background-color: red;
 }
 .toolbar-filter {

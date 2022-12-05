@@ -1,7 +1,6 @@
 let src = chrome.runtime.getURL("rowFilterer.js");
 const { rowFilterer } = await import(src);
 
-
 /**
  * Creates a search input for dynamic title searching.
  *
@@ -19,7 +18,9 @@ class titleFilterer extends rowFilterer {
     });
 
     // store name elements in array-like object
-    const namesFromDOM = document.querySelectorAll("tbody .views-field-title a");
+    const namesFromDOM = document.querySelectorAll(
+      "tbody .views-field-title a"
+    );
 
     // listen for user events
     searchInput.addEventListener("keyup", (event) => {
@@ -34,7 +35,7 @@ class titleFilterer extends rowFilterer {
         // compare current name to search input
         if (name.includes(searchQuery)) {
           // found name matching search, display it
-          this.removeHideCondition(nameElement)
+          this.removeHideCondition(nameElement);
         } else {
           // no match, don't display name
           this.addHideCondition(nameElement);

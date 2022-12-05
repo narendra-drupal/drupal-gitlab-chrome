@@ -20,11 +20,7 @@ const utils = {
   settingDefaults: {
     projects: [],
     load_pages: false,
-    auto_tags: [
-      'Needs tests',
-      'Needs issue summary update',
-      'Accessibility',
-    ],
+    auto_tags: ["Needs tests", "Needs issue summary update", "Accessibility"],
   },
 
   getIssueListViewElement: function () {

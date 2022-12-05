@@ -1,13 +1,12 @@
 // background.js
 import { utils } from "./common.js";
 
-
 function fetchJson(url, parser, sendResponse) {
   fetch(url)
-      .then((response) => response.text())
-      .then((text) => sendResponse({ issues: parser(text) }))
-      // @todo handle error.
-      .catch((error) => sendResponse({ farewell: error }));
+    .then((response) => response.text())
+    .then((text) => sendResponse({ issues: parser(text) }))
+    // @todo handle error.
+    .catch((error) => sendResponse({ farewell: error }));
 }
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(
@@ -16,7 +15,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       : "from the extension"
   );
   if (request.call === "sample_call") {
-    console.log('sample_call was called');
+    console.log("sample_call was called");
     return true; // Will respond asynchronously.
   }
 });

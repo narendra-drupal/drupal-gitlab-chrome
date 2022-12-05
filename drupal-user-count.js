@@ -8,23 +8,22 @@ const { toolbarRowFilterer } = await import(src);
  */
 
 class userCountFilter extends toolbarRowFilterer {
-    createElement() {
-        // On issue queue search page
-        const assignedInput = document.getElementById("edit-assigned");
-        const assignedText = assignedInput.getAttribute("value").trim();
-        const assignedFields = document.querySelectorAll(
-            "td.views-field-field-issue-assigned"
-        );
-        if (assignedText) {
-            const filterValues = assignedText.split(",").map((name) => name.trim());
-            return this.setUpFilter(assignedFields, 'user', filterValues);
-        }
-        return this.setUpFilter(assignedFields, 'user');
+  createElement() {
+    // On issue queue search page
+    const assignedInput = document.getElementById("edit-assigned");
+    const assignedText = assignedInput.getAttribute("value").trim();
+    const assignedFields = document.querySelectorAll(
+      "td.views-field-field-issue-assigned"
+    );
+    if (assignedText) {
+      const filterValues = assignedText.split(",").map((name) => name.trim());
+      return this.setUpFilter(assignedFields, "user", filterValues);
     }
-    getNoValueLabel() {
-        return "Unassigned";
-    }
-
+    return this.setUpFilter(assignedFields, "user");
+  }
+  getNoValueLabel() {
+    return "Unassigned";
+  }
 }
 const userCount = new userCountFilter();
 export { userCount };

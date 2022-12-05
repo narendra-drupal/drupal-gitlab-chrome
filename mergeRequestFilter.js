@@ -12,27 +12,30 @@ const { mergeRequestStatus } = await import(src);
  */
 
 class mergeRequestFilterer extends toolbarRowFilterer {
-    createElement() {
-        // On issue queue search page
-        const mergeRequestsTds = utils.getIssueListViewElement().querySelectorAll(
-            "td.merge-request-status"
-        );
-        mergeRequestStatus.existingStatues.add('none');
-        return this.setUpFilter(mergeRequestsTds, 'user', mergeRequestStatus.existingStatues);
-    }
+  createElement() {
+    // On issue queue search page
+    const mergeRequestsTds = utils
+      .getIssueListViewElement()
+      .querySelectorAll("td.merge-request-status");
+    mergeRequestStatus.existingStatues.add("none");
+    return this.setUpFilter(
+      mergeRequestsTds,
+      "user",
+      mergeRequestStatus.existingStatues
+    );
+  }
 
-    /**
-     * Determines if a field matches a value.
-     *
-     * @param field
-     * @param filterValue
-     * @returns {boolean}
-     */
-    fieldMatchesFilterValue(field, filterValue) {
-        const mergeStatusClass = 'merge-request-status_' + filterValue;
-        return field.classList.contains(mergeStatusClass)
-    }
-
+  /**
+   * Determines if a field matches a value.
+   *
+   * @param field
+   * @param filterValue
+   * @returns {boolean}
+   */
+  fieldMatchesFilterValue(field, filterValue) {
+    const mergeStatusClass = "merge-request-status_" + filterValue;
+    return field.classList.contains(mergeStatusClass);
+  }
 }
 const mergeRequestFilter = new mergeRequestFilterer();
 export { mergeRequestFilter };

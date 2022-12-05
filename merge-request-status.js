@@ -23,10 +23,10 @@ const mergeRequestStatus = {
         .then((response) => response.json())
         .then((data) => {
           const tdElement = document.createElement("td");
-          tdElement.classList.add('merge-request-status')
+          tdElement.classList.add("merge-request-status");
           if (Object.keys(data).length === 0) {
             tdElement.appendChild(document.createTextNode("No"));
-            tdElement.classList.add('merge-request-status_none');
+            tdElement.classList.add("merge-request-status_none");
           } else {
             for (const key in data) {
               const anchorLink = document.createElement("a");
@@ -39,8 +39,10 @@ const mergeRequestStatus = {
               );
               anchorLink.appendChild(link);
               this.existingStatues.add(data[key].merge_status);
-              tdElement.classList.add('merge-request-status-exists')
-              tdElement.classList.add('merge-request-status_' + data[key].merge_status);
+              tdElement.classList.add("merge-request-status-exists");
+              tdElement.classList.add(
+                "merge-request-status_" + data[key].merge_status
+              );
               Object.assign(anchorLink, {
                 title: "Merge request #" + data[key].iid,
                 href: data[key].web_url,
@@ -53,7 +55,9 @@ const mergeRequestStatus = {
           nameElement.parentNode.parentNode.appendChild(tdElement);
           columnsAdded++;
           if (columnsAdded === namesFromDOM.length) {
-            utils.getIssueListViewElement().classList.add('merge-request-column-added');
+            utils
+              .getIssueListViewElement()
+              .classList.add("merge-request-column-added");
           }
         });
     }
@@ -66,7 +70,9 @@ const mergeRequestStatus = {
       .appendChild(thElement);
   },
   isAdded: function () {
-    return utils.getIssueListViewElement().classList.contains('merge-request-column-added');
+    return utils
+      .getIssueListViewElement()
+      .classList.contains("merge-request-column-added");
   },
 };
 

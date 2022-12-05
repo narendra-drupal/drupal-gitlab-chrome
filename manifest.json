@@ -26,7 +26,10 @@
     },
     {
       "type": "module",
-      "matches": ["https://www.drupal.org/project/*/issues/*", "https://www.drupal.org/node/add/project-issue/*"],
+      "matches": [
+        "https://www.drupal.org/project/*/issues/*",
+        "https://www.drupal.org/node/add/project-issue/*"
+      ],
       "js": ["drupal-issue-tags.js"],
       "css": ["content-styles.css"]
     }

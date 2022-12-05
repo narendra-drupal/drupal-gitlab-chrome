@@ -18,10 +18,10 @@
         if (items.load_pages) {
           multiPage.addPages();
           const checkInterval = setInterval(function () {
-            const isMultiplePage = document.getElementsByClassName('multi-page-all-loaded');
-            if (
-                isMultiplePage.length > 0
-            ) {
+            const isMultiplePage = document.getElementsByClassName(
+              "multi-page-all-loaded"
+            );
+            if (isMultiplePage.length > 0) {
               listingToolbar.create();
               window.clearInterval(checkInterval);
               mergeRequestStatus.addColumn();
@@ -32,12 +32,14 @@
           mergeRequestStatus.addColumn();
         }
         const checkMergeRequestColumnInterval = setInterval(function () {
-          if (
-              mergeRequestStatus.isAdded()
-          ) {
-
+          if (mergeRequestStatus.isAdded()) {
             window.clearInterval(checkMergeRequestColumnInterval);
-            listingToolbar.getElement().insertBefore(mergeRequestFilter.createElement(), document.getElementById('extension-filter'));
+            listingToolbar
+              .getElement()
+              .insertBefore(
+                mergeRequestFilter.createElement(),
+                document.getElementById("extension-filter")
+              );
           }
         }, 500);
         return false;
