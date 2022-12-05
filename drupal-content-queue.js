@@ -6,6 +6,8 @@
   const { multiPage } = await import(src);
   src = chrome.runtime.getURL("toolbar.js");
   const { listingToolbar } = await import(src);
+  src = chrome.runtime.getURL("mergeRequestFilter.js");
+  const { mergeRequestFilter } = await import(src);
 
   src = chrome.runtime.getURL("merge-request-status.js");
   const { mergeRequestStatus } = await import(src);
@@ -29,6 +31,15 @@
           listingToolbar.create();
           mergeRequestStatus.addColumn();
         }
+        const checkMergeRequestColumnInterval = setInterval(function () {
+          if (
+              mergeRequestStatus.isAdded()
+          ) {
+
+            window.clearInterval(checkMergeRequestColumnInterval);
+            listingToolbar.getElement().insertBefore(mergeRequestFilter.createElement(), document.getElementById('extension-filter'));
+          }
+        }, 500);
         return false;
       }
       return true;

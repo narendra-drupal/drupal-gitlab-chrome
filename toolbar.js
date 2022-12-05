@@ -7,6 +7,7 @@ const { statusCount } = await import(src);
 src = chrome.runtime.getURL("drupal-priority-count.js");
 const { priorityCount } = await import(src);
 
+
 /**
  * Provides a custom toolbar on the listing page.
  *
@@ -26,13 +27,17 @@ const listingToolbar = {
     customToolbar.appendChild(priorityCount.createElement());
     customToolbar.appendChild(titleFilter.createElement());
     issueTable.parentNode.insertBefore(customToolbar, issueTable);
+    return customToolbar;
   },
 
   removeExisting: function () {
-    const existingToolbar = document.getElementById(this.elementId);
+    const existingToolbar = this.getElement();
     if (existingToolbar) {
       existingToolbar.remove();
     }
+  },
+  getElement: function () {
+    return document.getElementById(this.elementId);
   },
 };
 export { listingToolbar };
