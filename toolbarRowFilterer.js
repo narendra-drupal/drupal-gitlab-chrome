@@ -5,6 +5,8 @@ const { rowFilterer } = await import(src);
  * A row filter that also has a toolbar element.
  */
 class toolbarRowFilterer extends rowFilterer {
+
+    static notEmpty =  '__NOT_EMPTY';
   /**
    *
    * @param displayedElements
@@ -22,6 +24,9 @@ class toolbarRowFilterer extends rowFilterer {
         ),
       ];
     }
+    if ((filterValues.find(n => n.length === 0)) !== undefined) {
+        filterValues.push(toolbarRowFilterer.notEmpty);
+    }
     const containerDiv = document.createElement("div");
     containerDiv.className = `${filterType}Count toolbar-filter`;
     filterValues.forEach(
@@ -34,9 +39,15 @@ class toolbarRowFilterer extends rowFilterer {
         });
         const filterValueDiv = document.createElement("div");
         filterValueDiv.setAttribute("issue_cnt", issueInfo.count);
-        filterValueDiv.innerText =
-          (filterValue.length === 0 ? this.getNoValueLabel() : filterValue) +
-          `: ${issueInfo.count}`;
+        if (filterValue === toolbarRowFilterer.notEmpty) {
+            filterValueDiv.innerText = "Not empty";
+        }
+        else {
+            filterValueDiv.innerText =
+                (filterValue.length === 0 ? this.getNoValueLabel() : filterValue) +
+                `: ${issueInfo.count}`;
+        }
+
         if (issueInfo.count) {
           const clicker = document.createElement("a");
           //clicker.setAttribute('href', '#')
@@ -102,6 +113,9 @@ class toolbarRowFilterer extends rowFilterer {
    * @returns {boolean}
    */
   fieldMatchesFilterValue(field, filterValue) {
+    if (filterValue === toolbarRowFilterer.notEmpty && field.textContent.trim().length > 0) {
+        return true;
+    }
     return (
       (filterValue.length === 0 && field.textContent.trim().length === 0) ||
       (filterValue.length !== 0 && field.textContent.includes(filterValue))
