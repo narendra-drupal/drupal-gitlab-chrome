@@ -47,7 +47,8 @@
         "toolbarRowFilterer.js",
         "rowFilterer.js",
         "drupal-priority-count.js",
-        "mergeRequestFilter.js"
+        "mergeRequestFilter.js",
+        "drupal-component-count.js"
       ],
       "matches": ["https://www.drupal.org/*"]
     },

@@ -8,6 +8,8 @@ src = chrome.runtime.getURL("drupal-status-count.js");
 const { statusCount } = await import(src);
 src = chrome.runtime.getURL("drupal-priority-count.js");
 const { priorityCount } = await import(src);
+src = chrome.runtime.getURL("drupal-component-count.js");
+const { componentCount } = await import(src);
 
 /**
  * Provides a custom toolbar on the listing page.
@@ -26,6 +28,7 @@ const listingToolbar = {
     customToolbar.appendChild(userCount.createElement());
     customToolbar.appendChild(statusCount.createElement());
     customToolbar.appendChild(priorityCount.createElement());
+    customToolbar.appendChild(componentCount.createElement())
     customToolbar.appendChild(titleFilter.createElement());
     issueTable.parentNode.insertBefore(customToolbar, issueTable);
     return customToolbar;
