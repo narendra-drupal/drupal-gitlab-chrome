@@ -28,7 +28,7 @@ const listingToolbar = {
     customToolbar.appendChild(userCount.createElement());
     customToolbar.appendChild(statusCount.createElement());
     customToolbar.appendChild(priorityCount.createElement());
-    customToolbar.appendChild(componentCount.createElement())
+    customToolbar.appendChild(componentCount.createElement());
     customToolbar.appendChild(titleFilter.createElement());
     issueTable.parentNode.insertBefore(customToolbar, issueTable);
     return customToolbar;

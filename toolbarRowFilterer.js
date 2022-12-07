@@ -23,8 +23,11 @@ class toolbarRowFilterer extends rowFilterer {
         ),
       ];
     }
-    if (filterValues.find((n) => n.length === 0) !== undefined) {
-      filterValues.push(toolbarRowFilterer.notEmpty);
+    const emptyIndex = filterValues.findIndex((n) => n.length === 0);
+    if (emptyIndex !== -1) {
+      filterValues.splice(emptyIndex, 1);
+      filterValues.unshift("");
+      filterValues.unshift(toolbarRowFilterer.notEmpty);
     }
     const containerDiv = document.createElement("div");
     containerDiv.className = `${filterType}Count toolbar-filter`;
@@ -91,7 +94,13 @@ class toolbarRowFilterer extends rowFilterer {
         containerDiv.appendChild(filterValueDiv);
       }.bind(this)
     );
-    return containerDiv;
+    const labelDiv = document.createElement("div");
+    labelDiv.innerText = filterType;
+    labelDiv.classList.add("filter-label");
+    const outDiv = document.createElement("div");
+    outDiv.appendChild(labelDiv);
+    outDiv.appendChild(containerDiv);
+    return outDiv;
   }
 
   /**

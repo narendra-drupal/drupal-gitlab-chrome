@@ -17,13 +17,14 @@ class mergeRequestFilterer extends toolbarRowFilterer {
     const mergeRequestsTds = utils
       .getIssueListViewElement()
       .querySelectorAll("td.merge-request-status");
-    mergeRequestStatus.existingStatues
-      .add("none")
-      .add(toolbarRowFilterer.notEmpty);
+    const existingStatuses = Array.from(mergeRequestStatus.existingStatues);
+    existingStatuses.unshift("none");
+    existingStatuses.unshift(toolbarRowFilterer.notEmpty);
+
     return this.setUpFilter(
       mergeRequestsTds,
-      "user",
-      Array.from(mergeRequestStatus.existingStatues)
+      "Merge-Request",
+      existingStatuses
     );
   }
 
