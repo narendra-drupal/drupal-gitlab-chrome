@@ -39,5 +39,8 @@ const utils = {
       (key) => drupalConfig.statusField[key] === id
     );
   },
+  getIssueTableElement: function () {
+    return this.getIssueListViewElement().querySelector("table.project-issue");
+  },
 };
 export { utils };

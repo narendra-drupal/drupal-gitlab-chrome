@@ -13,6 +13,14 @@
   const { mergeRequestStatus } = await import(src);
 
   chrome.storage.sync.get(utils.settingDefaults, function (items) {
+    if (items.projects.length === 0) {
+      const info = document.createElement("div");
+      info.classList.add("options-help");
+      info.innerText =
+        "No projects added to chrome extensions options. Add for functionality";
+      const issueTable = utils.getIssueTableElement();
+      issueTable.parentNode.insertBefore(info, issueTable);
+    }
     items.projects.every((project) => {
       if (document.URL.includes(`issues/search/${project}`)) {
         if (items.load_pages) {

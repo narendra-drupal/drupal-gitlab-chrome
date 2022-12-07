@@ -1,4 +1,6 @@
-let src = chrome.runtime.getURL("drupal-user-count.js");
+let src = chrome.runtime.getURL("common.js");
+const { utils } = await import(src);
+src = chrome.runtime.getURL("drupal-user-count.js");
 const { userCount } = await import(src);
 src = chrome.runtime.getURL("dynamic-filter-script.js");
 const { titleFilter } = await import(src);
@@ -18,7 +20,7 @@ const listingToolbar = {
     this.removeExisting();
     const customToolbar = document.createElement("div");
     customToolbar.id = this.elementId;
-    const issueTable = document.querySelector("table.project-issue");
+    const issueTable = utils.getIssueTableElement();
 
     // Add the individual elements to the toolbar.
     customToolbar.appendChild(userCount.createElement());

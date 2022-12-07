@@ -24,3 +24,9 @@ div.toolbar-filter.userCount div.user-issue-cnt-0 {
 .tagDiv:disabled {
   background-color: grey;
 }
+
+.options-help {
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+}

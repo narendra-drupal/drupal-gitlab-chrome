@@ -17,7 +17,9 @@ class mergeRequestFilterer extends toolbarRowFilterer {
     const mergeRequestsTds = utils
       .getIssueListViewElement()
       .querySelectorAll("td.merge-request-status");
-    mergeRequestStatus.existingStatues.add("none").add(toolbarRowFilterer.notEmpty);
+    mergeRequestStatus.existingStatues
+      .add("none")
+      .add(toolbarRowFilterer.notEmpty);
     return this.setUpFilter(
       mergeRequestsTds,
       "user",
@@ -33,7 +35,10 @@ class mergeRequestFilterer extends toolbarRowFilterer {
    * @returns {boolean}
    */
   fieldMatchesFilterValue(field, filterValue) {
-    if (filterValue === toolbarRowFilterer.notEmpty && field.classList.contains('merge-request-status-exists')) {
+    if (
+      filterValue === toolbarRowFilterer.notEmpty &&
+      field.classList.contains("merge-request-status-exists")
+    ) {
       return true;
     }
     const mergeStatusClass = "merge-request-status_" + filterValue;
